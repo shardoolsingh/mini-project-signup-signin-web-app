@@ -1,0 +1,25 @@
+{
+  "name": "mini-project-basic-fullstack-signup-login-web-app",
+  "version": "1.0.0",
+  "description": "A basics fullstack web app with user signin-signup functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 2",
+    "tailwind:build": "npx @tailwindcss/cli -i ./public/styles/input.css -o ./public/styles/output.css --watch"
+  },
+  "keywords": [
+    "fullstack",
+    "nodejs",
+    "express",
+    "prisma",
+    "sqlite",
+    "javascript",
+    "tailwind"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

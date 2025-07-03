@@ -2,7 +2,7 @@
 /temp
 
 # Ignore node_modules
-/backend/node_modules
+/node_modules
 
 # Ignore environment file
 /backend/.env
