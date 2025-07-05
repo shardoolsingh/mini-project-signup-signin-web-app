@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 2",
-    "tailwind:build": "npx @tailwindcss/cli -i ./public/styles/input.css -o ./public/styles/output.css --watch"
+    "tailwind:build": "npx @tailwindcss/cli -i ./public/styles/input.css -o ./public/styles/output.css --watch",
+    "start": "node backend/server.js"
   },
   "keywords": [
     "fullstack",
@@ -21,5 +22,9 @@
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.11",
     "tailwindcss": "^4.1.11"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "prisma": "^6.11.1"
   }
 }
