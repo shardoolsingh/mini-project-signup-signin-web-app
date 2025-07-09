@@ -1,9 +1,9 @@
 // index.js
 
-// Get cta button
-const signupBtn = document.querySelector("#btn-cta-signup");
+    // Get <form> element
+    const form = document.querySelector("form");
 
-signupBtn.addEventListener("click", (event) => {
+    form.addEventListener("submit", (event) => {
     // Prevent Default
     event.preventDefault();
 
@@ -15,31 +15,44 @@ signupBtn.addEventListener("click", (event) => {
     user.password = document.querySelector("#password").value;
 
     // Implement fetch() logic to send data to server
-    fetch("/signup", {
+    fetch("http://localhost:3000/signup", {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json',
 	},
 	body: JSON.stringify(user)
-    }).
-    then(response => {
-	// If response is not ok
-	if(!response.ok){
-	    throw new Error(`HTTP Error: ${rsponse.status}`);
-	    return; 	// Early return
-	}
+    })
+    .then(response => {
+        // If response is not ok
+	    if(!response.ok){
+	        throw new Error(`HTTP Error: ${response.status}`);
+	        return; 	// Early return
+	    }
 
-	response.json();	// Parse incoming json string
-    }).
-    then(data => {
-	if(data){	// JS truthy to confirm if there is some data
-	    console.log("Success: ", data);
-	}
-    }).
-    catch(error => {
-	console.error("Signup process failed. Error: ", error);
+	    return response.json();	// Parse incoming 'json string'
+    })
+    .then(data => {
+        if(data){	// JS truthy to confirm if there is some data
+            console.log(data.message);    // Assume 'data' has a 'message' property
+
+            // Add success message on UI
+            const successPara = document.createElement("p");
+            successPara.style.color = "green";
+            successPara.innerText = data.message;   // Assuming 'data' has a 'message' property
+
+            document.querySelector(".section-signup").appendChild(successPara);
+        }
+
+        // Empty the input fields after submission
+        document.querySelector("#name").value = "";
+        document.querySelector("#email").value = "";
+        document.querySelector("#password").value = "";
+
+        // Refocus on name field
+        document.querySelector("#name").focus();
+    })
+    .catch(error => {
+	    console.error("Signup process failed. Error: ", error);
+    });
     });
 
-    // Verify data capture by logging user
-    console.log(user);
-});
