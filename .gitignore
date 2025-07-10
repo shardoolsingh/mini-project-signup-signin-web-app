@@ -8,4 +8,4 @@
 /backend/.env
 
 # Ignore local database file
-/prisma/dev.db
+/backend/prisma/dev.db
