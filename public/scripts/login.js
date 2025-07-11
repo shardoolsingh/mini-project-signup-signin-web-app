@@ -28,14 +28,22 @@ form.addEventListener("submit", (event) => {
 	fetchPromise.then(response => {
 		// If resonse is not ok
 		if(!response.ok){
-			throw new Error(`HTTP Error: ${response.status}.`);
+		    return response.json().then(data => {
+			// Log server's error response to the console
+			console.log(data.message);
+
+			// Update the UI with error message
+			const errorPara = document.createElement("p");
+			errorPara.innerText = data.message;
+			errorPara.style.color = "red";
+
+			form.appendChild(errorPara);
+		    });
 		}
 
-		//return response.json();	// Parse incoming json string into usable js object
 		return response.text();	// Get HTML response
 	}).then(html => {
 		if(html){	// JS truthy to verify there is some data
-			//console.log(data.message);	// Assuming data has a 'message' property
 			document.querySelector(".section-login").innerHTML = html;
 
 		}

@@ -40,7 +40,7 @@
             successPara.style.color = "green";
             successPara.innerText = data.message;   // Assuming 'data' has a 'message' property
 
-            document.querySelector(".section-signup").appendChild(successPara);
+            form.appendChild(successPara);
         }
 
         // Empty the input fields after submission
