@@ -1,0 +1,11 @@
+# Ignore /temp
+/temp
+
+# Ignore node_modules
+/node_modules
+
+# Ignore environment file
+/backend/.env
+
+# Ignore local database file
+/backend/prisma/dev.db
