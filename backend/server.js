@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const path = require('path');
 const ejs = require('ejs');
+require('dotenv').config();
 
 const app = express();
 const prisma = new PrismaClient();
@@ -15,7 +16,11 @@ const PORT = 3000;
 // Middlewares
 
 // CORS - allow all origin
-app.use(cors());
+const allowedOrigin = process.env.FRONTEND_ORIGIN;
+
+app.use(cors({
+	allowedOrigin,
+}));
 
 // Parse incoming json string into js objects
 app.use(express.json());
