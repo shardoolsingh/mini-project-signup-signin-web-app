@@ -30,6 +30,7 @@
 	user.password = rawPassword;
     } else {
 	alert("Password must be at least 8 characters long and contain at least 1 capital case, 1 small case, 1 number & 1 symbol.");
+	return;    // Return immediately
     }
 
     // Implement fetch() logic to send data to server
