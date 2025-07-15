@@ -29,6 +29,21 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
+// Utility functions
+
+// hashPassword(plainPassword)
+async function hashPassword(plainPassword){
+    const hashSalt = 10;
+
+    try{
+	const hashedPassword = await bcrypt.hash(plainPassword, hashSalt);
+	return hashedPassword;
+    } catch(error){
+	console.error("Password hashing failed");
+	return null;
+    }
+}
+
 // Routes
 
 // Welcome at '/'
@@ -53,7 +68,7 @@ app.post('/signup', async (req, res) => {
 			data: {
 		    	name,
 		    	email,
-		    	password,
+		    	password: await hashPassword(password),
 			},
 		});
 
