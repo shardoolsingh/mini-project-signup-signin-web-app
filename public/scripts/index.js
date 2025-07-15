@@ -9,10 +9,29 @@
 
     const user = {};
 
+    // Password Validator function
+    function validatePassword(password){
+  	const hasValidLength = password.length >= 8;
+  	const hasCapitalCase = /[A-Z]/.test(password);
+  	const hasSmallCase = /[a-z]/.test(password);
+  	const hasNumber = /\d/.test(password);
+        const hasSymbol = /[^A-Za-z0-9\s]/g.test(password);
+  
+ 	return hasValidLength && hasCapitalCase && hasSmallCase && hasNumber && hasSymbol;
+    }
+
     // Capture input in user object
     user.name = document.querySelector("#name").value;
     user.email = document.querySelector("#email").value;
-    user.password = document.querySelector("#password").value;
+	    
+    const rawPassword = document.querySelector("#password").value;
+    if(validatePassword(rawPassword)){
+	// Capture validated password for 'user' object
+	user.password = rawPassword;
+    } else {
+	alert("Password must be at least 8 characters long and contain at least 1 capital case, 1 small case, 1 number & 1 symbol.");
+	return;    // Return immediately
+    }
 
     // Implement fetch() logic to send data to server
     fetch("http://localhost:3000/signup", {
