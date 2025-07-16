@@ -15,7 +15,7 @@ const PORT = 3000;
 
 // Middlewares
 
-// CORS - allow all origin
+// CORS - allowed origins 
 const allowedOrigin = process.env.FRONTEND_ORIGIN;
 
 app.use(cors({
@@ -41,6 +41,16 @@ async function hashPassword(plainPassword){
     } catch(error){
 	console.error("Password hashing failed");
 	return null;
+    }
+}
+
+// matchPassword(inputPassword, dbPassword);
+async function matchPassword(inputPassword, dbPassword){
+    try{
+	const isMatch = await bcrypt.compare(inputPassword, dbPassword);
+	return isMatch;	// Boolean: true on match, false otherwise
+    } catch(error){
+	console.error("Error. Could not match input password with database password");
     }
 }
 
@@ -89,12 +99,11 @@ app.post('/api/login', async (req, res) => {
 		const user = await prisma.users.findUnique({
 			where: {
 				email: email,
-				password: password,
 			},
 		});
 
 		// Handle login failure
-		if (!user) {
+		if (!user || !(await matchPassword(password, user.password))) {
 			console.log(`Login failed: invalid credentials for ${email}`);	// Log failure to the server
 			return res.status(401).json({ message: "Invalid email or password." });
 		}
