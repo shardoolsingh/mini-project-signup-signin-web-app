@@ -16,7 +16,7 @@ form.addEventListener("submit", (event) => {
 	requestUser.password = passwordInput.value;
 
 	// Send data using fetch() & 'POST'
-	const fetchPromise = fetch("http://localhost:3000/api/login", {
+	const fetchPromise = fetch("https://mini-project-signup-signin-web-apps.onrender.com/api/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
