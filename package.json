@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 2",
     "tailwind:build": "npx @tailwindcss/cli -i ./public/styles/input.css -o ./public/styles/output.css --watch",
-    "start": "node backend/server.js",
+    "start": "npx prisma migrate deploy && node backend/server.js",
     "deploy": "gh-pages -d public"
   },
   "keywords": [
