@@ -34,7 +34,7 @@
     }
 
     // Implement fetch() logic to send data to server
-    fetch("http://localhost:3000/signup", {
+    fetch("https://mini-project-signup-signin-web-apps.onrender.com/signup", {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json',
