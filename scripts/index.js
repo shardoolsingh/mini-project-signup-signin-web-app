@@ -34,7 +34,7 @@
     }
 
     // Implement fetch() logic to send data to server
-    fetch("https://mini-project-signup-signin-web-apps.onrender.com/signup", {
+    fetch("https://mini-project-signup-signin-web-app.onrender.com/signup", {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json',
